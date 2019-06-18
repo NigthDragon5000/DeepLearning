@@ -96,7 +96,17 @@ X = pickle.load(pickle_in)
 pickle_in = open("y.pickle","rb")
 y = pickle.load(pickle_in)
 
-X = X/255.0
+#X = X/255.0
+
+# For no overflow the memory
+Xf=np.zeros((24946, 75,75,3))
+
+for i in range(0,len(X)):
+    Xf[i] = X[i]/255.0
+
+X=Xf
+del Xf
+
 
 dense_layers = [0, 1, 2]
 layer_sizes = [32, 64, 128]
